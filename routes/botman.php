@@ -1,9 +1,49 @@
 <?php
 use App\Http\Controllers\BotManController;
+use Mpociot\BotMan\BotMan;
 // Don't use the Facade in here to support the RTM API too :)
 $botman = resolve('botman');
 
 $botman->hears('test', function($bot){
-    $bot->reply('hello!');
+    //only for facebook messenger
+    $bot->typesAndWaits(5);
+    $bot->reply('Hello ' . $bot->getUser()->getFirstName() . '! I am a big fan of tests. Even Test Driven Development.');
 });
-$botman->hears('Start conversation', BotManController::class.'@startConversation');
+
+
+// Commnands
+$botman->hears('/start', BotManController::class.'@startOnboardingConversation');
+
+$botman->hears('/help', function($bot) {
+    $bot->reply('here is a list of commands you can use');
+});
+
+$botman->hears('/topics', function($bot) {
+    $bot->reply('here is a list of topics');
+});
+
+$botman->hears("call me {name}", function (BotMan $bot, $name) {
+    // Store information for the currently logged in user.
+    // You can also pass a user-id / key as a second parameter.
+    $bot->userStorage()->save([
+        'name' => $name
+    ]);
+
+    $bot->reply('I will call you '.$name);
+});
+
+$botman->hears("who am I", function (BotMan $bot) {
+    // Retrieve information for the currently logged in user.
+    // You can also pass a user-id / key as a second parameter.
+    $user = $bot->userStorage()->get();
+
+    if ($user->has('name')) {
+        $bot->reply('You are '.$user->get('name'));
+    } else {
+        $bot->reply('I do not know you yet.');
+    }
+});
+
+$botman->fallback(function($bot) {
+    $bot->reply('Sorry, I did not understand these commands. Here is a list of commands I understand: ...');
+});
