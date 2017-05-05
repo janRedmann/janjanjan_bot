@@ -1,7 +1,7 @@
 <?php
 
 
-namespace janjanjan_bot\Conversations;
+namespace App\Conversations;
 
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\Button;

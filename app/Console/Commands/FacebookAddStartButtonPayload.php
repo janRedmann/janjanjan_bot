@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Mpociot\BotMan\Http\Curl;

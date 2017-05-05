@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => janjanjan_bot\User::class,
+            'model' => App\User::class,
         ],
 
         // 'users' => [

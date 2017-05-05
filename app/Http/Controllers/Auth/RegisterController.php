@@ -1,9 +1,9 @@
 <?php
 
-namespace janjanjan_bot\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use janjanjan_bot\User;
-use janjanjan_bot\Http\Controllers\Controller;
+use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 

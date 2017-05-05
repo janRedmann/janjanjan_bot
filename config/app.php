@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        janjanjan_bot\Providers\AppServiceProvider::class,
-        janjanjan_bot\Providers\AuthServiceProvider::class,
-        // janjanjan_bot\Providers\BroadcastServiceProvider::class,
-        janjanjan_bot\Providers\EventServiceProvider::class,
-        janjanjan_bot\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

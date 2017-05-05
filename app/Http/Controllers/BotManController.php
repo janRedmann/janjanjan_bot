@@ -1,13 +1,21 @@
 <?php
 
-namespace janjanjan_bot\Http\Controllers;
+namespace App\Http\Controllers;
 
-use janjanjan_bot\Conversations\OnboardingConversation;
+use App\Conversations\OnboardingConversation;
+use App\Conversations\ChooseTopicConversation;
 use Illuminate\Http\Request;
 use Mpociot\BotMan\BotMan;
 
 class BotManController extends Controller
 {
+    protected $bot;
+
+    public function __construct()
+    {
+        $this->bot = app('botman');
+    }
+
     /**
      * Place your BotMan logic here.
      */
@@ -21,11 +29,22 @@ class BotManController extends Controller
 
     /**
      * Loaded through routes/botman.php
-     * @param  BotMan $bot
+     *
      */
-    public function startOnboardingConversation(BotMan $bot)
+    public function startOnboardingConversation()
     {
-        $bot->startConversation(new OnboardingConversation($bot));
+        $this->bot->startConversation(new OnboardingConversation());
+    }
+
+    public function startChooseTopicConversation()
+    {
+        $this->bot->startConversation(new ChooseTopicConversation());
+    }
+
+    public function showAllTopics()
+    {
+        $topics = [];
+
     }
 }
 

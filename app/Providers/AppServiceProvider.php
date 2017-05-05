@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

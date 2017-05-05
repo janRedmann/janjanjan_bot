@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

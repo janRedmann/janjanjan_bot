@@ -24,7 +24,7 @@
             "database"
         ],
         "psr-4": {
-            "janjanjan_bot\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

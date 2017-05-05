@@ -1,10 +1,10 @@
 <?php
 
-namespace janjanjan_bot\Console;
+namespace App\Console;
 
-use janjanjan_bot\Console\Commands\BotManListen;
-use janjanjan_bot\Console\Commands\BotManTinker;
-use janjanjan_bot\Console\Commands\FacebookAddStartButtonPayload;
+use App\Console\Commands\BotManListen;
+use App\Console\Commands\BotManTinker;
+use App\Console\Commands\FacebookAddStartButtonPayload;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

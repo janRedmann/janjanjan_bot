@@ -1,7 +1,7 @@
 <?php
 
 
-namespace janjanjan_bot\Conversations;
+namespace App\Conversations;
 
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\Button;
@@ -10,9 +10,14 @@ use Mpociot\BotMan\Question;
 
 class SkillsConversation extends Conversation
 {
+    public function tellAboutSkills()
+    {
+        $this->say('here i tell you something about skills');
+    }
+
     public function run()
     {
-        // TODO: Implement run() method.
+        $this->tellAboutSkills();
     }
 
 }

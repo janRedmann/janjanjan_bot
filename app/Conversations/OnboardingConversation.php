@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot\Conversations;
+namespace App\Conversations;
 
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\BotMan;
@@ -15,9 +15,9 @@ class OnboardingConversation extends Conversation
 
     protected $bot;
 
-    public function __construct(BotMan $bot)
+    public function __construct()
     {
-        $this->bot = $bot;
+        $this->bot = app('botman');
     }
 
     /**
@@ -31,6 +31,8 @@ class OnboardingConversation extends Conversation
             $this->say('Nice to meet you, ' . $this->username . ' ' . html_entity_decode('&#x1F603;', 0, 'UTF-8'));
 
             $this->bot->userStorage()->save(['name' => $this->username]);
+
+            $this->bot->startConversation(new ChooseTopicConversation());
         });
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'janjanjan_bot\Events\SomeEvent' => [
-            'janjanjan_bot\Listeners\EventListener',
+        'App\Events\ConversationRequested' => [
+            'App\Listeners\StartNewConversation',
         ],
     ];
 

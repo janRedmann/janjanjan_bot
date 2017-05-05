@@ -1,8 +1,8 @@
 <?php
 
-namespace janjanjan_bot\Console\Commands;
+namespace App\Console\Commands;
 
-use janjanjan_bot\Conversations\ExampleConversation;
+use App\Conversations\ExampleConversation;
 use Illuminate\Console\Command;
 use Mpociot\BotMan\BotManFactory;
 use Mpociot\BotMan\Cache\ArrayCache;

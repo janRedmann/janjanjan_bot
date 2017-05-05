@@ -1,6 +1,6 @@
 <?php
 
-namespace janjanjan_bot\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
