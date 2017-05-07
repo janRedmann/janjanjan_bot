@@ -49,7 +49,7 @@ class BotManController extends Controller
 
     public function showAllTopics()
     {
-        $topics = ['Skills', 'Personal', 'Work', 'Goals'];
+        $topics = ['Skills', 'Personal', 'Work Experience', 'Goals'];
 
         $buttons= [];
 

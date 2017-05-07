@@ -14,13 +14,19 @@ class ConversationRequested
     use InteractsWithSockets, SerializesModels;
 
     /**
+     * @var string
+     */
+    public $topic;
+
+    /**
      * Create a new event instance.
      *
+     * @param string
      * @return void
      */
-    public function __construct()
+    public function __construct($topic)
     {
-        //
+        $this->topic = $topic;
     }
 
     /**
