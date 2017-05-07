@@ -6,6 +6,11 @@ use App\Events\ConversationRequested;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mpociot\BotMan\BotMan;
+use App\Conversations\SkillsConversation;
+use App\Conversations\GoalsConversation;
+use App\Conversations\PersonalConversation;
+use App\Conversations\WorkExperienceConversation;
+
 
 class StartNewConversation
 {
@@ -16,9 +21,9 @@ class StartNewConversation
      * @param BotMan $bot
      * @return void
      */
-    public function __construct(BotMan $bot)
+    public function __construct()
     {
-        $this->bot = $bot;
+        $this->bot = app('botman');
     }
 
     /**
@@ -30,10 +35,10 @@ class StartNewConversation
     public function handle(ConversationRequested $event)
     {
         $conversations = [
-            'Skills' => 'SkillsConversation',
-            'Personal' => 'PersonalConversation',
-            'Work Experience' => 'WorkExperienceConversation',
-            'Goals' => 'GoalsConversation'
+            'Skills' => 'App\Conversations\SkillsConversation',
+            'Personal' => 'App\Conversations\PersonalConversation',
+            'Work Experience' => 'App\Conversations\WorkExperienceConversation',
+            'Goals' => 'App\Conversations\GoalsConversation'
         ];
 
         $topic = $event->topic;

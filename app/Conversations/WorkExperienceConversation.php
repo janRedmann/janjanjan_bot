@@ -10,9 +10,14 @@ use Mpociot\BotMan\Question;
 
 class WorkExperienceConversation extends Conversation
 {
+    public function tellAboutWorkExperience()
+    {
+        $this->say('here i tell you something about my work experience');
+    }
+
     public function run()
     {
-        // TODO: Implement run() method.
+        $this->tellAboutWorkExperience();
     }
 
 }

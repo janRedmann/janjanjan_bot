@@ -47,6 +47,8 @@ class BotManController extends Controller
 
 
 
+
+
     public function showAllTopics()
     {
         $topics = ['Skills', 'Personal', 'Work Experience', 'Goals'];
@@ -55,19 +57,22 @@ class BotManController extends Controller
 
         foreach ($topics as $topic) {
             array_push($buttons, Button::create($topic)->value($topic));
+        }
             $question = Question::create('Here is an overview of all the topics. Just click on one and i tell you more.')
                 ->fallback('Unable to show topics')
                 ->callbackId('show_topics')
-                ->addButton($buttons);
-            $this->ask($question, function (Answer $answer) {
+                ->addButtons($buttons);
+            $this->bot->ask($question, function (Answer $answer) {
               if ($answer->isInteractiveMessageReply()) {
-                  event(new ConversationRequested($answer->getValue())) ;
+                  $topic = $answer->getValue();
+                  event(new ConversationRequested($topic));
               }
             });
-        }
+
 
 
 
     }
+
 }
 
