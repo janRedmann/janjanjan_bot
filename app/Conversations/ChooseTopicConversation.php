@@ -11,12 +11,6 @@ use Mpociot\BotMan\BotMan;
 
 class ChooseTopicConversation extends Conversation
 {
-//    protected $bot;
-//
-//    public function __construct()
-//    {
-//        $this->bot = app('botman');
-//    }
     public function askForTopic()
     {
         $question = Question::create('So about which topic do you want me to talk about now?')

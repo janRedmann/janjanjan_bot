@@ -1,7 +1,6 @@
 <?php
 use App\Http\Controllers\BotManController;
-use Mpociot\BotMan\BotMan;
-// Don't use the Facade in here to support the RTM API too :)
+
 $botman = resolve('botman');
 
 $botman->hears('test', function($bot){
@@ -19,6 +18,15 @@ $botman->hears('/help', function($bot) {
 
 $botman->hears('/topics', BotManController::class.'@showAllTopics');
 
+// Keywords for the topics
+
+$botman->hears('skills', BotManController::class.'@startSkillsConversation');
+
+$botman->hears('goals', BotManController::class.'@startGoalsConversation');
+
+$botman->hears('personal', BotManController::class.'@startPersonalConversation');
+
+$botman->hears('work experience', BotManController::class.'@startWorkExperienceConversation');
 
 $botman->fallback(function($bot) {
     $bot->reply('Sorry, I did not understand these commands. Here is a list of commands I understand: ...');
