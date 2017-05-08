@@ -5,7 +5,7 @@ namespace App\Conversations;
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\BotMan;
 use Mpociot\BotMan\Button;
-use Mpociot\BotMan\Conversation;
+use App\Conversations\Conversation;
 use Mpociot\BotMan\Question;
 
 class OnboardingConversation extends Conversation

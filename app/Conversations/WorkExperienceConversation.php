@@ -1,11 +1,10 @@
 <?php
 
-
 namespace App\Conversations;
 
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\Button;
-use Mpociot\BotMan\Conversation;
+use App\Conversations\Conversation;
 use Mpociot\BotMan\Question;
 
 class WorkExperienceConversation extends Conversation

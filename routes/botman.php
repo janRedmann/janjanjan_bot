@@ -16,7 +16,7 @@ $botman->hears('test', function($bot){
 // Commnands
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
 
-$botman->hears('/help', function($bot) {
+$botman->hears('help', function($bot) {
     $bot->reply('here is a list of commands you can use');
 });
 
