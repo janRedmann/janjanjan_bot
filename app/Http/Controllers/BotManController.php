@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Conversations\OnboardingConversation;
 use App\Conversations\ChooseTopicConversation;
+use App\Conversations\GoalsConversation;
+use App\Conversations\PersonalConversation;
+use App\Conversations\SkillsConversation;
+use App\Conversations\WorkExperienceConversation;
 use App\Events\ConversationRequested;
 use Illuminate\Http\Request;
 use Mpociot\BotMan\Answer;
@@ -45,9 +49,25 @@ class BotManController extends Controller
         $this->bot->startConversation(new ChooseTopicConversation());
     }
 
+    public function startPersonalConversation()
+    {
+        $this->bot->startConversation(new PersonalConversation());
+    }
 
+    public function startGoalsConversation()
+    {
+        $this->bot->startConversation(new GoalsConversation());
+    }
 
+    public function startSkillsConversation()
+    {
+        $this->bot->startConversation(new SkillsConversation());
+    }
 
+    public function startWorkExperienceConversation()
+    {
+        $this->bot->startConversation(new WorkExperienceConversation());
+    }
 
     public function showAllTopics()
     {
@@ -68,11 +88,6 @@ class BotManController extends Controller
                   event(new ConversationRequested($topic));
               }
             });
-
-
-
-
     }
-
 }
 

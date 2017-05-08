@@ -13,13 +13,6 @@ class OnboardingConversation extends Conversation
 
     protected $username;
 
-    protected $bot;
-
-    public function __construct()
-    {
-        $this->bot = app('botman');
-    }
-
     /**
      * First question
      */
@@ -32,10 +25,13 @@ class OnboardingConversation extends Conversation
 
             $this->bot->userStorage()->save(['name' => $this->username]);
 
-            $this->bot->startConversation(new ChooseTopicConversation());
+            $this->bot->typesAndWaits('2');
+            $this->say(config('janbot.onboarding.introduction_1'));
+            $this->bot->typesAndWaits('4');
+            $this->say(config('janbot.onboarding.introduction_2'));
+            $this->bot->typesAndWaits('4');
+            $this->say(config('janbot.onboarding.introduction_3'));
         });
-
-
     }
 
     /**

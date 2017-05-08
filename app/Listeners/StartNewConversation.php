@@ -41,8 +41,8 @@ class StartNewConversation
             'Goals' => 'App\Conversations\GoalsConversation'
         ];
 
-        $topic = $event->topic;
+//        $topic = $event->topic;
 
-        $this->bot->startConversation(new $conversations[$topic]);
+        $this->bot->startConversation(new $conversations[$event->topic]);
     }
 }

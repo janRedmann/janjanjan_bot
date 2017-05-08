@@ -12,7 +12,7 @@ class SkillsConversation extends Conversation
 {
     public function tellAboutSkills()
     {
-        $this->say('here i tell you something about skills');
+        $this->say('Hey ' . $this->bot->userStorage()->get()->get('name') . ', here i tell you something about skills');
     }
 
     public function run()
