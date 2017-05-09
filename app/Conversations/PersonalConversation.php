@@ -12,21 +12,22 @@ class PersonalConversation extends Conversation
     public function tellAboutPersonal()
     {
         $this->bot->typesAndWaits(3);
-        $this->say('here i tell you something personal');
+        $this->say('Alright ' . $this->bot->userStorage()->get()->get('name') . ', i will tell you something personal about Jan.');
+        $this->say(config('janbot.personal.paragraph_1'));
         $this->bot->typesAndWaits(3);
-        $this->ask('Do you want to hear more about this topic?', [
+        $this->ask('Do you want to hear more about this poker thing?', [
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->continueConversation();
+                    $this->moreInfo();
                 }
             ],
             [
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say('Alright. Which topic are you interested in now?');
+                    $this->say('Okay, i see. Which topic are you interested in now? Remember, the other topics are: Skills, Work Experience and Goals');
                 }
             ],
             [
@@ -35,7 +36,7 @@ class PersonalConversation extends Conversation
                     $this->bot->typesAndWaits(3);
                     $this->say('Sorry but i did not understand your answer.');
                     $this->bot->typesAndWaits(3);
-                    $newQuestion = Question::create('Do you want to hear more about skills?')
+                    $newQuestion = Question::create('Do you want to hear more about the professional poker?')
                         ->addButtons([
                             Button::create('Oh yeah')->value('yes'),
                             Button::create('Oh no')->value('no'),
@@ -47,9 +48,9 @@ class PersonalConversation extends Conversation
         ]);
     }
 
-    public function continueConversation()
+    public function moreInfo()
     {
-        $this->say('here i continue the conversation');
+        $this->say(config('janbot.personal.paragraph_2'));
     }
 
     public function run()

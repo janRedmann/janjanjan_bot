@@ -18,7 +18,6 @@ class StartNewConversation
 
     /**
      * Create the event listener.
-     * @param BotMan $bot
      * @return void
      */
     public function __construct()

@@ -12,6 +12,10 @@ $botman->hears('test', function($bot){
     $bot->reply('Hello ' . $bot->getUser()->getFirstName() . '! I am a big fan of tests. Even Test Driven Development.');
 });
 
+$botman->hears('(.*) bye', function($bot){
+    $bot->typesAndWaites(2);
+    $bot->reply('Good bye. I enjoyed talking to you and i hope i could help.');
+});
 
 // Commnands
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
