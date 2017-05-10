@@ -13,7 +13,7 @@ class SkillsConversation extends Conversation
     {
         $this->bot->typesAndWaits(3);
         $this->say('Alright ' . $this->bot->userStorage()->get()->get('name') . ', i will tell you something about Jan\'s skills.');
-        $this->say(config('janbot.personal.paragraph_1'));
+        $this->say(config('janbot.skills.paragraph_1'));
         $this->bot->typesAndWaits(3);
         $this->ask('Do you want to hear more?', [
             [
@@ -36,7 +36,7 @@ class SkillsConversation extends Conversation
                     $this->bot->typesAndWaits(3);
                     $this->say('Sorry but i did not understand your answer.');
                     $this->bot->typesAndWaits(3);
-                    $newQuestion = Question::create('Do you want to hear more about the professional poker?')
+                    $newQuestion = Question::create('Do you want to hear more?')
                         ->addButtons([
                             Button::create('Oh yeah')->value('yes'),
                             Button::create('Oh no')->value('no'),
