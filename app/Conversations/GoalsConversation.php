@@ -9,9 +9,14 @@ use Mpociot\BotMan\Question;
 
 class GoalsConversation extends Conversation
 {
+    public function tellAboutGoals()
+    {
+        $this->say(config('janbot.goals.paragraph_1'));
+    }
+
     public function run()
     {
-        // TODO: Implement run() method.
+        $this->tellAboutGoals();
     }
 
 }

@@ -5,8 +5,11 @@ namespace App\Common;
 class EmojiHelper
 {
     protected $emojis = [
-        'smileyFace' => '&#x1F603;',
-        'thumbsUp' => '&#x1f44d;'
+        'smiling face with open mouth' => '&#x1F603;',
+        'thumbsUp' => '&#x1f44d;',
+        'winking face' => '&#x1F609',
+        'smiling face with smiling eyes' => '&#x1F60A',
+
     ];
 
     public function display($emoji)

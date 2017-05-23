@@ -37,7 +37,8 @@ class StartNewConversation
             'Skills' => 'App\Conversations\SkillsConversation',
             'Personal' => 'App\Conversations\PersonalConversation',
             'Work Experience' => 'App\Conversations\WorkExperienceConversation',
-            'Goals' => 'App\Conversations\GoalsConversation'
+            'Goals' => 'App\Conversations\GoalsConversation',
+            'Smalltalk' => 'App\Conversations\SmalltalkConversation'
         ];
 
 //        $topic = $event->topic;

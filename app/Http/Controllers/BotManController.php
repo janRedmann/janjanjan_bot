@@ -9,7 +9,6 @@ use App\Conversations\PersonalConversation;
 use App\Conversations\SkillsConversation;
 use App\Conversations\WorkExperienceConversation;
 use App\Events\ConversationRequested;
-use Illuminate\Http\Request;
 use Mpociot\BotMan\Answer;
 use Mpociot\BotMan\BotMan;
 use Mpociot\BotMan\Button;

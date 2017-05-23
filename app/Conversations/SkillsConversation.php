@@ -12,22 +12,25 @@ class SkillsConversation extends Conversation
     public function tellAboutSkills()
     {
         $this->bot->typesAndWaits(3);
-        $this->say('Alright ' . $this->bot->userStorage()->get()->get('name') . ', i will tell you something about Jan\'s skills.');
+        $this->say(sprintf(config('janbot.skills.intro'), $this->bot->userStorage()->get()->get('name')));
+        $this->bot->typesAndWaits(4);
         $this->say(config('janbot.skills.paragraph_1'));
+        $this->bot->typesAndWaits(4);
+        $this->say(config('janbot.skills.paragraph_2'));
         $this->bot->typesAndWaits(3);
         $this->ask('Do you want to hear more?', [
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->moreInfo();
+                    $this->say(config('janbot.skills.paragraph_3'));
                 }
             ],
             [
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say('Okay, i see. Which topic are you interested in now? Remember, the other topics are: Skills, Work Experience and Goals');
+                    $this->say(config('janbot.skills.question'));
                 }
             ],
             [
@@ -44,14 +47,11 @@ class SkillsConversation extends Conversation
                     $this->repeat($newQuestion);
                 }
             ],
-
         ]);
     }
-
 
     public function run()
     {
         $this->tellAboutSkills();
     }
-
 }

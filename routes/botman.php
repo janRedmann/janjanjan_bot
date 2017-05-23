@@ -56,6 +56,6 @@ $botman->hears('personal', BotManController::class.'@startPersonalConversation')
 
 $botman->hears('work experience', BotManController::class.'@startWorkExperienceConversation');
 
-//$botman->fallback(function($bot) {
-//    $bot->reply('Sorry, I did not understand what you just said. Here is a list of commands I understand: ...');
-//});
+$botman->fallback(function($bot) {
+    $bot->reply(config('janbot.fallback'));
+});
