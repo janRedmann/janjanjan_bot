@@ -30,7 +30,10 @@ class OnboardingConversation extends Conversation
 
             $this->bot->userStorage()->save(['name' => $answer->getText()]);
 
-            $this->say(sprintf(config('janbot.onboarding.greeting_1') ,$this->bot->userStorage()->get()->get('name'),$this->emojiHelper->display('smiling face with open mouth')));
+            $this->say(sprintf(config('janbot.onboarding.greeting_1') ,
+                $this->bot->userStorage()->get()->get('name'),
+                $this->emojiHelper->display('smiling face with open mouth')
+            ));
 
             $this->bot->typesAndWaits('6');
             $this->say(config('janbot.onboarding.introduction_1'));

@@ -23,28 +23,17 @@ $botman->hears('(.*) bye', function($bot){
     $bot->reply('Good bye. I enjoyed talking to you and i hope i could help.');
 });
 
-$botman->hears('.*', function($bot) {
-    // The incoming message matched the "my_api_action" on API.ai
-    // Retrieve API.ai information:
-    $extras = $bot->getMessage()->getExtras();
-    $apiReply = $extras['apiReply'];
-    $apiAction = $extras['apiAction'];
-    $apiIntent = $extras['apiIntent'];
-
-    $bot->reply($apiReply);
-
-
-})->middleware(ApiAi::create('7087597e60af4da69ddd993a19e660be')->listenForAction());
-
-
 // Commnands
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
 
 $botman->hears('help', function($bot) {
-    $bot->reply('here is a list of commands you can use');
+    $bot->typesAndWaites(3);
+    $bot->reply(config('janbot.help.paragraph_1'));
+    $bot->typesAndWaites(3);
+    $bot->reply(config('janbot.help.paragraph_2'));
 });
 
-$botman->hears('/topics', BotManController::class.'@showAllTopics');
+$botman->hears('topics', BotManController::class.'@showAllTopics');
 
 // Keywords for the topics
 
