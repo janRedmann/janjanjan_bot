@@ -26,13 +26,14 @@ class OnboardingConversation extends Conversation
     public function askName()
     {
         $this->bot->typesAndWaits(3);
-        $this->ask('Hello! What is your firstname?', function(Answer $answer) {
+        $this->ask('Hello! What is your name?', function(Answer $answer) {
 
             $this->bot->userStorage()->save(['name' => $answer->getText()]);
 
+            $this->bot->typesAndWaits('3');
             $this->say(sprintf(config('janbot.onboarding.greeting_1') ,
                 $this->bot->userStorage()->get()->get('name'),
-                $this->emojiHelper->display('smiling face with open mouth')
+                $this->emojiHelper->display(['smiling face with open mouth'])
             ));
 
             $this->bot->typesAndWaits('6');
@@ -51,6 +52,8 @@ class OnboardingConversation extends Conversation
             if (array_key_exists($company, config('janbot.onboarding.companies'))) {
                 $this->bot->typesAndWaits('2');
                 $this->say(config('janbot.onboarding.companies.'.$company));
+//                $this->say($this->emojiHelper->display('thumbs up sign') . $this->emojiHelper->display('winking face'));
+                $this->say($this->emojiHelper->display(['thumbs up sign', 'winking face']));
             }
             $this->bot->userStorage()->save(['company' => $company]);
 //            $message = Message::create()
@@ -59,6 +62,7 @@ class OnboardingConversation extends Conversation
 //            $this->bot->reply($message);
             $this->bot->typesAndWaits('2');
             $this->say(config('janbot.onboarding.introduction_3'));
+
         });
     }
 

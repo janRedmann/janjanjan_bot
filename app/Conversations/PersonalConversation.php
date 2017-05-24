@@ -13,16 +13,20 @@ class PersonalConversation extends Conversation
     {
         $this->bot->typesAndWaits(3);
         $this->say('Alright ' . $this->bot->userStorage()->get()->get('name') . ', i will tell you something personal about Jan.');
-        $this->bot->typesAndWaits(4);
+        $this->bot->typesAndWaits(6);
         $this->say(config('janbot.personal.paragraph_1'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(6);
+        $this->say(config('janbot.personal.paragraph_2'));
+        $this->bot->typesAndWaits(6);
         $this->ask(config('janbot.personal.question'), [
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(2);
-                    $this->say(config('janbot.personal.paragraph_2'));
-                    $this->bot->typesAndWaits(2);
+                    $this->bot->typesAndWaits(6);
+                    $this->say(config('janbot.personal.paragraph_3'));
+                    $this->bot->typesAndWaits(6);
+                    $this->say(config('janbot.personal.paragraph_4'));
+                    $this->bot->typesAndWaits(6);
                     $this->say('What topic are you interested in now? Other topics are: skills, work experience and goals.');
                 }
             ],
@@ -30,7 +34,7 @@ class PersonalConversation extends Conversation
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say('Okay, i see. Which topic are you interested in now? Remember, the other topics are: Skills, Work Experience and Goals');
+                    $this->say('Okay, i see. Which topic are you interested in now? Remember, the other topics are: skills, work experience and goals');
                 }
             ],
             [

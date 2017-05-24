@@ -19,7 +19,7 @@ $botman->hears('test', function($bot){
 });
 
 $botman->hears('(.*) bye', function($bot){
-    $bot->typesAndWaites(2);
+    $bot->typesAndWaits(2);
     $bot->reply('Good bye. I enjoyed talking to you and i hope i could help.');
 });
 
@@ -27,9 +27,9 @@ $botman->hears('(.*) bye', function($bot){
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
 
 $botman->hears('help', function($bot) {
-    $bot->typesAndWaites(3);
+    $bot->typesAndWaits(3);
     $bot->reply(config('janbot.help.paragraph_1'));
-    $bot->typesAndWaites(3);
+    $bot->typesAndWaits(3);
     $bot->reply(config('janbot.help.paragraph_2'));
 });
 
