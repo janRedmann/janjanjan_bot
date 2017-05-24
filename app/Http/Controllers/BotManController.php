@@ -10,7 +10,6 @@ use App\Conversations\SkillsConversation;
 use App\Conversations\WorkExperienceConversation;
 use App\Events\ConversationRequested;
 use Mpociot\BotMan\Answer;
-use Mpociot\BotMan\BotMan;
 use Mpociot\BotMan\Button;
 use Mpociot\BotMan\Question;
 
@@ -89,4 +88,3 @@ class BotManController extends Controller
             });
     }
 }
-

@@ -2,12 +2,6 @@
 
 namespace App\Conversations;
 
-use Mpociot\BotMan\Answer;
-use Mpociot\BotMan\Button;
-use App\Conversations\Conversation;
-use Mpociot\BotMan\Question;
-use App\Common\EmojiHelper;
-
 class GoalsConversation extends Conversation
 {
     protected $emojiHelper;
@@ -23,13 +17,15 @@ class GoalsConversation extends Conversation
         $this->bot->typesAndWaits('6');
         $this->say(sprintf(config('janbot.goals.paragraph_2'),
             $this->bot->userStorage()->get()->get('company'),
-            $this->emojiHelper->display('winking face')
+            $this->emojiHelper->display(['winking face'])
         ));
+        $this->bot->typesAndWaits('6');
+        $this->say(config('janbot.goals.paragraph_3'));
+
     }
 
     public function run()
     {
         $this->tellAboutGoals();
     }
-
 }

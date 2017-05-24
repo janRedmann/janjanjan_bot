@@ -11,7 +11,6 @@ use App\Conversations\GoalsConversation;
 use App\Conversations\PersonalConversation;
 use App\Conversations\WorkExperienceConversation;
 
-
 class StartNewConversation
 {
     protected $bot;
@@ -40,8 +39,6 @@ class StartNewConversation
             'Goals' => 'App\Conversations\GoalsConversation',
             'Smalltalk' => 'App\Conversations\SmalltalkConversation'
         ];
-
-//        $topic = $event->topic;
 
         $this->bot->startConversation(new $conversations[$event->topic]);
     }

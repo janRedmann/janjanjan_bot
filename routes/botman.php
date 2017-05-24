@@ -1,7 +1,5 @@
 <?php
 use App\Http\Controllers\BotManController;
-use Mpociot\BotMan\Messages\Message;
-use Mpociot\BotMan\Middleware\ApiAi;
 
 $botman = resolve('botman');
 
@@ -23,7 +21,6 @@ $botman->hears('(.*) bye', function($bot){
     $bot->reply('Good bye. I enjoyed talking to you and i hope i could help.');
 });
 
-// Commnands
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
 
 $botman->hears('help', function($bot) {
@@ -36,7 +33,6 @@ $botman->hears('help', function($bot) {
 $botman->hears('topics', BotManController::class.'@showAllTopics');
 
 // Keywords for the topics
-
 $botman->hears('skills', BotManController::class.'@startSkillsConversation');
 
 $botman->hears('goals', BotManController::class.'@startGoalsConversation');

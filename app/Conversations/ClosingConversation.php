@@ -17,7 +17,7 @@ class ClosingConversation extends Conversation
      */
     public function closeConversation()
     {
-        $this->bot->say('here is the closing conversation');
+        $this->bot->say('Okay. We\'re done. I told you everything i know.');
     }
 
     /**
