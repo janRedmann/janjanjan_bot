@@ -16,9 +16,9 @@ $botman->hears('hello|hi|hey', function($bot) use ($emojiHelper){
 $botman->hears('test', function($bot) use ($emojiHelper) {
     $bot->typesAndWaits(3);
     $bot->reply('Yes i am here and fully functional. '
-        . $emojiHelper->display('thumbs up sign')
+        . $emojiHelper->display(['thumbs up sign'])
         . ' I am a big fan of tests. Even Test Driven Development.'
-        . $emojiHelper->display('smiling face with open mouth')
+        . $emojiHelper->display(['smiling face with open mouth'])
     );
 });
 

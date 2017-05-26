@@ -2,16 +2,11 @@
 
 namespace App\Conversations;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Mpociot\BotMan\Answer;
-use Mpociot\BotMan\Drivers\TelegramDriver;
 
 class OnboardingConversation extends Conversation
 {
     protected $emojiHelper;
-
-    protected $username;
 
     public function __construct() {
         $this->emojiHelper = resolve('App\Common\EmojiHelper');
@@ -85,16 +80,13 @@ class OnboardingConversation extends Conversation
         }
     }
 
-    protected function sendNotification()
-    {
-        $this->bot->say(sprintf(config('janbot.notification.message'),
-            $this->bot->userStorage()->get()->get('name'),
-            $this->bot->userStorage()->get()->get('company')),
-            config('janbot.notification.chat_id'),
-            config('janbot.notification.driver')
-        );
-    }
 
+    /**
+     * checks if a special message exists for the current user working for the given company
+     * @param string $company
+     *
+     * @return string | bool
+     */
     protected function checkForSpecialMessage($company)
     {
         $username = strtolower($this->bot->userStorage()->get()->get('name'));
@@ -105,7 +97,17 @@ class OnboardingConversation extends Conversation
 
         return false;
     }
-    
+
+    protected function sendNotification()
+    {
+        $this->bot->say(sprintf(config('janbot.notification.message'),
+            $this->bot->userStorage()->get()->get('name'),
+            $this->bot->userStorage()->get()->get('company')),
+            config('janbot.notification.chat_id'),
+            config('janbot.notification.driver')
+        );
+    }
+
     /**
      * Start the conversation
      */

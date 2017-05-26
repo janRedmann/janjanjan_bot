@@ -10,8 +10,9 @@ class EmojiHelper
         'winking face' => '&#x1F609;',
         'smiling face with smiling eyes' => '&#x1F60A;',
         'robot face' => '&#x1F916;',
-        'weary cat face' => '&#x1F640;'
-
+        'weary cat face' => '&#x1F640;',
+        'heavy check mark' => '&#x2714;',
+        'face with stuck out tongue' => '&#x1F61C;'
     ];
 
     public function display(array $emojis)

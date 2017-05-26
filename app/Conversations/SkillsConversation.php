@@ -7,17 +7,23 @@ use Mpociot\BotMan\Question;
 
 class SkillsConversation extends Conversation
 {
+    protected $emojiHelper;
+
+    public function __construct() {
+        $this->emojiHelper = resolve('App\Common\EmojiHelper');
+    }
+
     public function tellAboutSkills()
     {
         $this->bot->typesAndWaits(3);
         $this->say(sprintf(config('janbot.skills.intro'), $this->bot->userStorage()->get()->get('name')));
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.skills.paragraph_1'));
+
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.skills.paragraph_2'));
         $this->bot->typesAndWaits(4);
-        $this->bot->say('janbot.skills.paragraph_3');
-
+        $this->say(config('janbot.skills.paragraph_3'));
         $this->ask('Do you want to hear more?', [
             [
                 'pattern' => 'yes|yeah|yep|ya',
@@ -25,7 +31,7 @@ class SkillsConversation extends Conversation
                     $this->bot->typesAndWaits(3);
                     $this->say(config('janbot.skills.paragraph_4'));
                     $this->bot->typesAndWaits(6);
-                    $this->say(config('janbot.skills.question_1'));
+                    $this->say(sprintf(config('janbot.skills.question_1'), $this->emojiHelper->display(['heavy check mark'])));
                 }
             ],
             [
