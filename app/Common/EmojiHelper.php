@@ -10,6 +10,7 @@ class EmojiHelper
         'winking face' => '&#x1F609;',
         'smiling face with smiling eyes' => '&#x1F60A;',
         'robot face' => '&#x1F916;',
+        'weary cat face' => '&#x1F640;'
 
     ];
 

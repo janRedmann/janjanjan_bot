@@ -15,14 +15,15 @@ class SkillsConversation extends Conversation
         $this->say(config('janbot.skills.paragraph_1'));
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.skills.paragraph_2'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(4);
+        $this->bot->say('janbot.skills.paragraph_3');
 
         $this->ask('Do you want to hear more?', [
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say(config('janbot.skills.paragraph_3'));
+                    $this->say(config('janbot.skills.paragraph_4'));
                     $this->bot->typesAndWaits(6);
                     $this->say(config('janbot.skills.question_1'));
                 }
