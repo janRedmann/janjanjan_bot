@@ -1,19 +1,25 @@
 <?php
 use App\Http\Controllers\BotManController;
+use App\Common\EmojiHelper;
 
 $botman = resolve('botman');
+$emojiHelper = new EmojiHelper();
 
-$botman->hears('(.*) your name', function($bot){
-    $bot->reply('My name is Janbot');
+$botman->hears('(.*) your name', function($bot) use ($emojiHelper) {
+    $bot->reply('My name is Janbot ' . $emojiHelper->display(['robot face']));
 });
 
-$botman->hears('hello|hi|hey', function($bot){
-    $bot->reply('Hi there');
+$botman->hears('hello|hi|hey', function($bot) use ($emojiHelper){
+    $bot->reply('Hi there ' . $emojiHelper->display(['smiling face with smiling eyes']));
 });
 
-$botman->hears('test', function($bot){
+$botman->hears('test', function($bot) use ($emojiHelper) {
     $bot->typesAndWaits(3);
-    $bot->reply('Yes i am here and fully functional. I am a big fan of tests. Even Test Driven Development.');
+    $bot->reply('Yes i am here and fully functional. '
+        . $emojiHelper->display('thumbs up sign')
+        . ' I am a big fan of tests. Even Test Driven Development.'
+        . $emojiHelper->display('smiling face with open mouth')
+    );
 });
 
 $botman->hears('(.*) bye', function($bot){
