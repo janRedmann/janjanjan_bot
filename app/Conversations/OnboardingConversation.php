@@ -36,13 +36,13 @@ class OnboardingConversation extends Conversation
             ));
             $this->bot->typesAndWaits('2');
             $this->say(config('janbot.onboarding.introduction_2'));
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say(config('janbot.onboarding.introduction_3'));
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say(config('janbot.onboarding.introduction_4'));
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say(config('janbot.onboarding.introduction_5'));
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->askForCompany();
         });
     }
@@ -54,7 +54,7 @@ class OnboardingConversation extends Conversation
             $this->displayCompanyMessage($company);
             $this->bot->userStorage()->save(['company' => $company]);
             $this->displaySpecialMessage($company);
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say(config('janbot.onboarding.introduction_6'));
             $this->sendNotification();
         });
@@ -63,9 +63,9 @@ class OnboardingConversation extends Conversation
     protected function displayCompanyMessage($company)
     {
         if (array_key_exists($company, config('janbot.onboarding.companies'))) {
-                $this->bot->typesAndWaits('2');
+                $this->bot->typesAndWaits('4');
                 $this->say(config('janbot.onboarding.companies.'.$company));
-                $this->bot->typesAndWaits('2');
+                $this->bot->typesAndWaits('4');
                 $this->say($this->emojiHelper->display(['thumbs up sign', 'winking face']));
         }
     }
@@ -73,9 +73,9 @@ class OnboardingConversation extends Conversation
     protected function displaySpecialMessage($company)
     {
         if ($message = $this->checkForSpecialMessage($company)) {
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say($message);
-            $this->bot->typesAndWaits('2');
+            $this->bot->typesAndWaits('4');
             $this->say($this->emojiHelper->display(['weary cat face', 'winking face']));
         }
     }
@@ -93,7 +93,7 @@ class OnboardingConversation extends Conversation
         $username = strtolower($this->bot->userStorage()->get()->get('name'));
         if ($companyArray = config('janbot.onboarding.' . strtolower($company))) {
             if (array_key_exists($username, $companyArray)) {
-                return config('janbot.onboarding.' . $company . '.' . $username);
+                return config('janbot.onboarding.' . strtolower($company) . '.' . $username);
             }
         }
         return false;
