@@ -24,11 +24,11 @@ class EmojiHelper
         'dog face' => '&#x1F436;',
         'runner' => '&#x1F3C3;',
         'joker' => '&#x1F0CF;',
-        'woman shrugging' => '&#x1FE0F;',
         'man shrugging' => '&#x1F937;',
         'money bag' => '&#x1F4B0;',
         'balance scale' => '&#x2696;',
         'calculator' => '&#x1F4DF;',
+        'finger pointing down' => '&#x1F447;',
     ];
 
     public function display(array $emojis)

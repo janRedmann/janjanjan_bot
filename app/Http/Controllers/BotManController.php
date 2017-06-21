@@ -17,9 +17,12 @@ class BotManController extends Controller
 {
     protected $bot;
 
+    protected $emojiHelper;
+
     public function __construct()
     {
         $this->bot = app('botman');
+        $this->emojiHelper = resolve('App\Common\EmojiHelper');
     }
 
     /**
@@ -76,7 +79,9 @@ class BotManController extends Controller
         foreach ($topics as $topic) {
             array_push($buttons, Button::create($topic)->value($topic));
         }
-            $question = Question::create('Here is an overview of all the topics. Just click on one and i tell you more.')
+            $question = Question::create('Here is an overview of all the topics. Just click on one'.
+                $this->emojiHelper->display(['finger pointing down']) .
+                'and i tell you more' . $this->emojiHelper->display(['robot face']))
                 ->fallback('Unable to show topics')
                 ->callbackId('show_topics')
                 ->addButtons($buttons);

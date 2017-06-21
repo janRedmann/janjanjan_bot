@@ -38,7 +38,9 @@ $botman->hears('help', function($bot) use($emojiHelper) {
         $emojiHelper->display(['target'])
     ));
     $bot->typesAndWaits(2);
-    $bot->reply(config('janbot.help.paragraph_2'));
+    $bot->reply(sprintf(config('janbot.help.paragraph_2'),
+        $emojiHelper->display(['thumbs up sign'])
+    ));
 });
 
 $botman->hears('topics', BotManController::class.'@showAllTopics');
@@ -52,6 +54,14 @@ $botman->hears('personal', BotManController::class.'@startPersonalConversation')
 
 $botman->hears('work experience', BotManController::class.'@startWorkExperienceConversation');
 
-$botman->fallback(function($bot) {
-    $bot->reply(config('janbot.fallback'));
+$botman->fallback(function($bot) use($emojiHelper){
+    $bot->reply(sprintf(config('janbot.fallback_1'),
+        $emojiHelper->display(['man shrugging'])
+    ));
+    $bot->typesAndWaits(2);
+    $bot->reply(config('janbot.fallback_2'));
+    $bot->typesAndWaits(2);
+    $bot->reply(config('janbot.fallback_3'));
+    $bot->typesAndWaits(2);
+    $bot->reply(config('janbot.fallback_4'));
 });
