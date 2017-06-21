@@ -12,7 +12,11 @@ class EmojiHelper
         'robot face' => '&#x1F916;',
         'weary cat face' => '&#x1F640;',
         'heavy check mark' => '&#x2714;',
-        'face with stuck out tongue' => '&#x1F61C;'
+        'face with stuck out tongue' => '&#x1F61C;',
+        'computer' => '&#x1F4BB;',
+        'man' => '&#x1F646;',
+        'worker' => '&#x1F477;',
+        'target' => '&#x1F3AF;',
     ];
 
     public function display(array $emojis)

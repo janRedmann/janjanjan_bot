@@ -7,24 +7,33 @@ use Mpociot\BotMan\Question;
 
 class PersonalConversation extends Conversation
 {
+    protected $emojiHelper;
+
+    public function __construct() {
+        $this->emojiHelper = resolve('App\Common\EmojiHelper');
+    }
+
     public function tellAboutPersonal()
     {
         $this->bot->typesAndWaits(3);
-        $this->say(sprintf(config('janbot.personal.introduction'), $this->bot->userStorage()->get()->get('name')));
-        $this->bot->typesAndWaits(6);
+        $this->say(sprintf(config('janbot.personal.introduction'),
+            $this->bot->userStorage()->get()->get('name'),
+            $this->emojiHelper->display(['man'])
+        ));
+        $this->bot->typesAndWaits(4);
         $this->say(config('janbot.personal.paragraph_1'));
-        $this->bot->typesAndWaits(6);
+        $this->bot->typesAndWaits(4);
         $this->say(config('janbot.personal.paragraph_2'));
-        $this->bot->typesAndWaits(6);
+        $this->bot->typesAndWaits(4);
         $this->ask(config('janbot.personal.question_1'), [
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(6);
+                    $this->bot->typesAndWaits(4);
                     $this->say(config('janbot.personal.paragraph_3'));
-                    $this->bot->typesAndWaits(6);
+                    $this->bot->typesAndWaits(4);
                     $this->say(config('janbot.personal.paragraph_4'));
-                    $this->bot->typesAndWaits(6);
+                    $this->bot->typesAndWaits(4);
                     $this->say(config('janbot.personal.question_2'));
                 }
             ],

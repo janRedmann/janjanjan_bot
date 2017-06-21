@@ -14,12 +14,12 @@ class GoalsConversation extends Conversation
     {
         $this->bot->typesAndWaits('2');
         $this->say(config('janbot.goals.paragraph_1'));
-        $this->bot->typesAndWaits('6');
+        $this->bot->typesAndWaits('4');
         $this->say(sprintf(config('janbot.goals.paragraph_2'),
             $this->bot->userStorage()->get()->get('company'),
             $this->emojiHelper->display(['winking face'])
         ));
-        $this->bot->typesAndWaits('6');
+        $this->bot->typesAndWaits('4');
         $this->say(config('janbot.goals.paragraph_3'));
 
     }

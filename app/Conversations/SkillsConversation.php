@@ -16,7 +16,10 @@ class SkillsConversation extends Conversation
     public function tellAboutSkills()
     {
         $this->bot->typesAndWaits(3);
-        $this->say(sprintf(config('janbot.skills.intro'), $this->bot->userStorage()->get()->get('name')));
+        $this->say(sprintf(config('janbot.skills.intro'),
+            $this->bot->userStorage()->get()->get('name'),
+            $this->emojiHelper->display(['computer'])
+        ));
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.skills.paragraph_1'));
 
@@ -30,7 +33,7 @@ class SkillsConversation extends Conversation
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
                     $this->say(config('janbot.skills.paragraph_4'));
-                    $this->bot->typesAndWaits(6);
+                    $this->bot->typesAndWaits(4);
                     $this->say(sprintf(config('janbot.skills.question_1'), $this->emojiHelper->display(['heavy check mark'])));
                 }
             ],
