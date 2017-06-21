@@ -15,8 +15,14 @@ use Mpociot\BotMan\Question;
 
 class BotManController extends Controller
 {
+    /**
+     * @var Mpociot\Botman\Botman
+     */
     protected $bot;
 
+    /**
+     * @var App\Common\EmojiHelper
+     */
     protected $emojiHelper;
 
     public function __construct()
@@ -70,12 +76,14 @@ class BotManController extends Controller
         $this->bot->startConversation(new WorkExperienceConversation());
     }
 
+
+    /**
+     * Display a menu of buttons for each topic
+     */
     public function showAllTopics()
     {
         $topics = ['Skills', 'Personal', 'Work Experience', 'Goals'];
-
         $buttons= [];
-
         foreach ($topics as $topic) {
             array_push($buttons, Button::create($topic)->value($topic));
         }

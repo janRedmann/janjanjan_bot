@@ -54,6 +54,7 @@ $botman->hears('personal', BotManController::class.'@startPersonalConversation')
 
 $botman->hears('work experience', BotManController::class.'@startWorkExperienceConversation');
 
+// the fallback if not other keyword matches
 $botman->fallback(function($bot) use($emojiHelper){
     $bot->reply(sprintf(config('janbot.fallback_1'),
         $emojiHelper->display(['man shrugging'])

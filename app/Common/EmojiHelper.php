@@ -4,6 +4,9 @@ namespace App\Common;
 
 class EmojiHelper
 {
+    /**
+     * @var array
+     */
     protected $emojis = [
         'smiling face with open mouth' => '&#x1F603;',
         'thumbs up sign' => '&#x1f44d;',
@@ -31,6 +34,11 @@ class EmojiHelper
         'finger pointing down' => '&#x1F447;',
     ];
 
+
+    /**
+     * @param array $emojis
+     * @return string
+     */
     public function display(array $emojis)
     {
         $emojisDecoded = '';

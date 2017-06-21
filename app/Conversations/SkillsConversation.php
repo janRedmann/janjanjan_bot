@@ -7,6 +7,9 @@ use Mpociot\BotMan\Question;
 
 class SkillsConversation extends Conversation
 {
+    /**
+     * @var App\Common\EmojiHelper
+     */
     protected $emojiHelper;
 
     public function __construct() {
@@ -88,6 +91,9 @@ class SkillsConversation extends Conversation
         ]);
     }
 
+    /**
+     * Start the conversation
+     */
     public function run()
     {
         $this->tellAboutSkills();

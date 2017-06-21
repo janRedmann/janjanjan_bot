@@ -7,6 +7,9 @@ use Mpociot\BotMan\Messages\Message;
 
 class OnboardingConversation extends Conversation
 {
+    /**
+     * @var App\Common\EmojiHelper
+     */
     protected $emojiHelper;
 
     public function __construct() {
@@ -16,21 +19,16 @@ class OnboardingConversation extends Conversation
     /**
      * First question
      */
-    protected function askName()
+    protected function askForName()
     {
         $this->bot->typesAndWaits(2);
         $this->ask('Hello! What is your name?', function(Answer $answer) {
-
             $this->bot->userStorage()->save(['name' => $answer->getText()]);
-
-            $this->bot->userStorage()->save(['count' => '0']);
-
             $this->bot->typesAndWaits('1');
             $this->say(sprintf(config('janbot.onboarding.greeting_1') ,
                 $this->bot->userStorage()->get()->get('name'),
                 $this->emojiHelper->display(['smiling face with open mouth'])
             ));
-
             $this->bot->typesAndWaits('1');
             $this->say(sprintf(config('janbot.onboarding.introduction_1'),
                 $this->emojiHelper->display(['robot face'])
@@ -57,6 +55,9 @@ class OnboardingConversation extends Conversation
         });
     }
 
+    /**
+     * Second question
+     */
     protected function askForCompany()
     {
         $this->ask(sprintf(config('janbot.onboarding.question'), $this->emojiHelper->display(['office building'])), function(Answer $answer) {
@@ -72,6 +73,9 @@ class OnboardingConversation extends Conversation
         });
     }
 
+    /**
+     * @param string $company
+     */
     protected function displayCompanyMessage($company)
     {
         if (array_key_exists($company, config('janbot.onboarding.companies'))) {
@@ -82,6 +86,9 @@ class OnboardingConversation extends Conversation
         }
     }
 
+    /**
+     * @param string $company
+     */
     protected function displaySpecialMessage($company)
     {
         if ($message = $this->checkForSpecialMessage($company)) {
@@ -101,7 +108,6 @@ class OnboardingConversation extends Conversation
      * Checks if a special message exists for the current user working for the given company
      *
      * @param string $company
-     *
      * @return string | bool
      */
     protected function checkForSpecialMessage($company)
@@ -115,6 +121,9 @@ class OnboardingConversation extends Conversation
         return false;
     }
 
+    /**
+     * Send a notification about the ongoing chat to telegram
+     */
     protected function sendNotification()
     {
         $this->bot->say(sprintf(config('janbot.notification.message'),
@@ -130,6 +139,6 @@ class OnboardingConversation extends Conversation
      */
     public function run()
     {
-        $this->askName();
+        $this->askForName();
     }
 }

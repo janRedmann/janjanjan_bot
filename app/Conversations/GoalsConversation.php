@@ -4,6 +4,9 @@ namespace App\Conversations;
 
 class GoalsConversation extends Conversation
 {
+    /**
+     * @var App\Common\EmojiHelper
+     */
     protected $emojiHelper;
 
     public function __construct() {
@@ -32,9 +35,11 @@ class GoalsConversation extends Conversation
             $this->emojiHelper->display(['heavy check mark']),
             $this->bot->userStorage()->get()->get('name')
         ));
-
     }
 
+    /**
+     * Start the conversation
+     */
     public function run()
     {
         $this->tellAboutGoals();

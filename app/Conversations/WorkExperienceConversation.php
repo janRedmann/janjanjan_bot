@@ -4,6 +4,9 @@ namespace App\Conversations;
 
 class WorkExperienceConversation extends Conversation
 {
+    /**
+     * @var App\Common\EmojiHelper
+     */
     protected $emojiHelper;
 
     public function __construct() {
@@ -35,6 +38,9 @@ class WorkExperienceConversation extends Conversation
         ));
     }
 
+    /**
+     * Start the conversation
+     */
     public function run()
     {
         $this->tellAboutWorkExperience();
