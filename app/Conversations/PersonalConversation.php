@@ -23,7 +23,11 @@ class PersonalConversation extends Conversation
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.personal.paragraph_1'));
         $this->bot->typesAndWaits(4);
-        $this->say(config('janbot.personal.paragraph_2'));
+        $this->say(sprintf(config('janbot.personal.paragraph_2'),
+            $this->emojiHelper->display(['dog face']),
+            $this->emojiHelper->display(['runner']),
+            $this->emojiHelper->display(['joker'])
+        ));
         $this->bot->typesAndWaits(4);
         $this->ask(config('janbot.personal.question_1'), [
             [
@@ -31,17 +35,29 @@ class PersonalConversation extends Conversation
                 'callback' => function () {
                     $this->bot->typesAndWaits(4);
                     $this->say(config('janbot.personal.paragraph_3'));
+                    $this->say(sprintf(config('janbot.personal.paragraph_3'),
+                        $this->emojiHelper->display(['money bag'])
+                    ));
                     $this->bot->typesAndWaits(4);
                     $this->say(config('janbot.personal.paragraph_4'));
+                    $this->say(sprintf(config('janbot.personal.paragraph_4'),
+                        $this->emojiHelper->display(['calculator']),
+                        $this->emojiHelper->display(['balance scale'])
+                    ));
                     $this->bot->typesAndWaits(4);
-                    $this->say(config('janbot.personal.question_2'));
+                    $this->say(sprintf(config('janbot.personal.question_2'),
+                        $this->emojiHelper->display(['heavy check mark']),
+                        $this->bot->userStorage()->get()->get('name')
+                    ));
                 }
             ],
             [
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say(config('janbot.personal.question_3'));
+                    $this->say(sprintf(config('janbot.personal.question_3'),
+                        $this->bot->userStorage()->get()->get('name')
+                    ));
                 }
             ],
             [
@@ -65,6 +81,4 @@ class PersonalConversation extends Conversation
     {
         $this->tellAboutPersonal();
     }
-
-
 }

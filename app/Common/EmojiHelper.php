@@ -17,6 +17,18 @@ class EmojiHelper
         'man' => '&#x1F646;',
         'worker' => '&#x1F477;',
         'target' => '&#x1F3AF;',
+        'clapping hands' => '&#x1F44F;',
+        'ok hand' => '&#x1F44C;',
+        'office building' => '&#x1F3E2;',
+        'chart' => '&#x1F4C8;',
+        'dog face' => '&#x1F436;',
+        'runner' => '&#x1F3C3;',
+        'joker' => '&#x1F0CF;',
+        'woman shrugging' => '&#x1FE0F;',
+        'man shrugging' => '&#x1F937;',
+        'money bag' => '&#x1F4B0;',
+        'balance scale' => '&#x2696;',
+        'calculator' => '&#x1F4DF;',
     ];
 
     public function display(array $emojis)

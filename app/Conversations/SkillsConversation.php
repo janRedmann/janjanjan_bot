@@ -32,16 +32,21 @@ class SkillsConversation extends Conversation
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say(config('janbot.skills.paragraph_4'));
+                    $this->say(sprintf(config('janbot.skills.paragraph_4'), $this->emojiHelper->display(['chart'])));
                     $this->bot->typesAndWaits(4);
-                    $this->say(sprintf(config('janbot.skills.question_1'), $this->emojiHelper->display(['heavy check mark'])));
+                    $this->say(sprintf(config('janbot.skills.question_1'),
+                        $this->emojiHelper->display(['heavy check mark']),
+                        $this->bot->userStorage()->get()->get('name')
+                    ));
                 }
             ],
             [
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
                     $this->bot->typesAndWaits(3);
-                    $this->say(config('janbot.skills.question_2'));
+                    $this->say(sprintf(config('janbot.skills.question_2'),
+                        $this->bot->userStorage()->get()->get('name')
+                    ));
                 }
             ],
             [

@@ -14,7 +14,7 @@ $botman->hears('hello|hi|hey', function($bot) use ($emojiHelper){
 });
 
 $botman->hears('test', function($bot) use ($emojiHelper) {
-    $bot->typesAndWaits(3);
+    $bot->typesAndWaits(2);
     $bot->reply('Yes i am here and fully functional. '
         . $emojiHelper->display(['thumbs up sign'])
         . ' I am a big fan of tests. Even Test Driven Development.'
@@ -29,10 +29,15 @@ $botman->hears('(.*) bye', function($bot){
 
 $botman->hears('/start', BotManController::class.'@startOnboardingConversation');
 
-$botman->hears('help', function($bot) {
-    $bot->typesAndWaits(3);
-    $bot->reply(config('janbot.help.paragraph_1'));
-    $bot->typesAndWaits(3);
+$botman->hears('help', function($bot) use($emojiHelper) {
+    $bot->typesAndWaits(2);
+    $bot->reply(sprintf(config('janbot.help.paragraph_1'),
+        $emojiHelper->display(['computer']),
+        $emojiHelper->display(['man']),
+        $emojiHelper->display(['worker']),
+        $emojiHelper->display(['target'])
+    ));
+    $bot->typesAndWaits(2);
     $bot->reply(config('janbot.help.paragraph_2'));
 });
 

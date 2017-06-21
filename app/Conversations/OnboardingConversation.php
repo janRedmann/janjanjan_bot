@@ -39,9 +39,16 @@ class OnboardingConversation extends Conversation
             $this->bot->typesAndWaits('4');
             $this->say(config('janbot.onboarding.introduction_3'));
             $this->bot->typesAndWaits('4');
-            $this->say(config('janbot.onboarding.introduction_4'));
+            $this->say(sprintf(config('janbot.onboarding.introduction_4'),
+                $this->emojiHelper->display(['computer']),
+                $this->emojiHelper->display(['man']),
+                $this->emojiHelper->display(['worker']),
+                $this->emojiHelper->display(['target'])
+            ));
             $this->bot->typesAndWaits('4');
-            $this->say(config('janbot.onboarding.introduction_5'));
+            $this->say(sprintf(config('janbot.onboarding.introduction_5'),
+                $this->emojiHelper->display(['man shrugging'])
+            ));
             $this->bot->typesAndWaits('4');
             $this->askForCompany();
         });
@@ -49,13 +56,15 @@ class OnboardingConversation extends Conversation
 
     protected function askForCompany()
     {
-        $this->ask(config('janbot.onboarding.question'), function(Answer $answer) {
+        $this->ask(sprintf(config('janbot.onboarding.question'), $this->emojiHelper->display(['office building'])), function(Answer $answer) {
             $company = $answer->getText();
             $this->displayCompanyMessage($company);
             $this->bot->userStorage()->save(['company' => $company]);
             $this->displaySpecialMessage($company);
             $this->bot->typesAndWaits('4');
-            $this->say(config('janbot.onboarding.introduction_6'));
+            $this->say(sprintf(config('janbot.onboarding.introduction_6'),
+                $this->emojiHelper->display(['ok hand'])
+            ));
             $this->sendNotification();
         });
     }

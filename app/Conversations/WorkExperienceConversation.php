@@ -28,7 +28,10 @@ class WorkExperienceConversation extends Conversation
         $this->bot->typesAndWaits(4);
         $this->say(config('janbot.work_experience.paragraph_3'));
         $this->bot->typesAndWaits(4);
-        $this->say(config('janbot.work_experience.question'));
+        $this->say(sprintf(config('janbot.work_experience.question'),
+            $this->emojiHelper->display(['heavy check mark']),
+            $this->bot->userStorage()->get()->get('name')
+        ));
     }
 
     public function run()
