@@ -23,20 +23,20 @@ class SkillsConversation extends Conversation
             $this->bot->userStorage()->get()->get('name'),
             $this->emojiHelper->display(['computer'])
         ));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_1'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_1_a'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_1_b'));
 
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_2'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_2_a'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(config('janbot.skills.paragraph_3'));
-        $this->bot->typesAndWaits(3);
+        $this->bot->typesAndWaits(2);
         $this->say(sprintf(config('janbot.skills.paragraph_3_a'),
             $this->emojiHelper->display(['robot face']),
             $this->emojiHelper->display(['weary cat face'])
@@ -45,21 +45,21 @@ class SkillsConversation extends Conversation
             [
                 'pattern' => 'yes|yeah|yep|ya',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.skills.paragraph_4'),
                         $this->emojiHelper->display(['chart'])
                     ));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.skills.paragraph_4_a'));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.skills.question_1'),
                         $this->emojiHelper->display(['heavy check mark'])
                     ));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.skills.question_1_a'),
                         $this->bot->userStorage()->get()->get('name')
                     ));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.skills.question_1_b'));
                 }
             ],
@@ -77,9 +77,9 @@ class SkillsConversation extends Conversation
             [
                 'pattern' => '.*',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say('Sorry but i did not understand your answer.');
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $newQuestion = Question::create('Do you want to hear more?')
                         ->addButtons([
                             Button::create('Oh yeah')->value('yes'),

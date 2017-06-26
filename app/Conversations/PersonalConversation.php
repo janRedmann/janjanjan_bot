@@ -37,7 +37,7 @@ class PersonalConversation extends Conversation
         $this->say(sprintf(config('janbot.personal.paragraph_2_a'),
             $this->emojiHelper->display(['joker'])
         ));
-        $this->bot->typesAndWaits(4);
+        $this->bot->typesAndWaits(2);
         $this->ask(config('janbot.personal.question_1'), [
             [
                 'pattern' => 'yes|yeah|yep|ya',
@@ -49,22 +49,22 @@ class PersonalConversation extends Conversation
                     $this->say('Okay, i thought so.');
                     $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.personal.paragraph_3'));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.personal.paragraph_3_a'));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.personal.paragraph_3_b'),
                         $this->emojiHelper->display(['money bag'])
                     ));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.personal.paragraph_4'),
                         $this->emojiHelper->display(['calculator']),
                         $this->emojiHelper->display(['balance scale'])
                     ));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.personal.paragraph_4_a'));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(config('janbot.personal.paragraph_4_b'));
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.personal.question_2'),
                         $this->emojiHelper->display(['heavy check mark']),
                         $this->bot->userStorage()->get()->get('name')
@@ -74,7 +74,7 @@ class PersonalConversation extends Conversation
             [
                 'pattern' => 'no|nope|na',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say(sprintf(config('janbot.personal.question_3'),
                         $this->bot->userStorage()->get()->get('name')
                     ));
@@ -83,9 +83,9 @@ class PersonalConversation extends Conversation
             [
                 'pattern' => '.*',
                 'callback' => function () {
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $this->say('Sorry but i did not understand your answer.');
-                    $this->bot->typesAndWaits(3);
+                    $this->bot->typesAndWaits(2);
                     $newQuestion = Question::create(config('janbot.personal.question_1'))
                         ->addButtons([
                             Button::create('Oh yeah')->value('yes'),
