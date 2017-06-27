@@ -3,10 +3,17 @@
 namespace App\Conversations;
 
 use Mpociot\BotMan\Answer;
+use Mpociot\BotMan\Button;
 use Mpociot\BotMan\Messages\Message;
+use Mpociot\BotMan\Question;
 
 class OnboardingConversation extends Conversation
 {
+    /**
+     * @var string
+     */
+    protected $username;
+
     /**
      * @var App\Common\EmojiHelper
      */
@@ -21,18 +28,28 @@ class OnboardingConversation extends Conversation
      */
     protected function askForName()
     {
+        $this->username = $this->bot->getUser()->getFirstName();
         $this->bot->typesAndWaits(2);
 
-        $this->ask('Hello! What is your name?', function(Answer $answer) {
-            if (str_word_count($answer->getText()) > 2) {
-                $this->ask('Please enter only your name', function(Answer $answer) {
+        $this->say('Hi ' . $this->username . ' !'
+            . $this->emojiHelper->display(['smiling face with open mouth'])
+        );
+
+        $question = Question::create('Is ' .  $this->username .  ' correct? I can change your name if you want to')
+            ->addButtons([
+                Button::create('Correct')->value('Correct'),
+                Button::create('Change')->value('Change')
+            ]);
+        $this->ask($question, function (Answer $answer) {
+            if ($answer->getValue() === 'Correct') {
+                $this->bot->userStorage()->save(['name' => $this->username]);
+                $this->welcomeUser();
+            }
+            else {
+                $this->ask('Please enter the name you want me to use', function(Answer $answer) {
                     $this->bot->userStorage()->save(['name' => $answer->getText()]);
                     $this->welcomeUser();
                 });
-            }
-            else {
-                $this->bot->userStorage()->save(['name' => $answer->getText()]);
-                $this->welcomeUser();
             }
         });
     }
@@ -40,12 +57,9 @@ class OnboardingConversation extends Conversation
     protected function welcomeUser()
     {
         $this->bot->typesAndWaits('1');
-        $this->say(sprintf(config('janbot.onboarding.greeting_1') ,
-            $this->bot->userStorage()->get()->get('name'),
-            $this->emojiHelper->display(['smiling face with open mouth'])
-        ));
+        $this->say('Okay, ' . $this->bot->userStorage()->get()->get('name') . ' let\'s start');
 
-        $this->bot->typesAndWaits('1');
+        $this->bot->typesAndWaits('2');
         $this->say(sprintf(config('janbot.onboarding.introduction_1'),
             $this->emojiHelper->display(['robot face'])
         ));
